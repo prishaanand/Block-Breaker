@@ -58,21 +58,19 @@ public class Ball {
 		x += vx;
 		y += vy;
 		
-		//left and right borders!
+		//left and right borders
 		if(x<0 || x>570){
-			vx *= -1;//reverse
+			vx *= -1; //reverse
 		}
 		
-		//top and bottom borders!
+		//top and bottom borders
 		if(y<0 || y > 660){
 			vy *= -1;
 		}
 		
+		// game ends when ball hits the bottom
 		if(y > 660) {
-			//fix so that when it hits the bottom, 
-			//the game ends
 			System.exit(0);
-			
 		}
 		
 	}
@@ -82,7 +80,6 @@ public class Ball {
 		
 		Rectangle b = new Rectangle(x,y,w,w); 
 		Rectangle pad = new Rectangle(p.getX(), p.getY(), p.getW(), p.getH());
-		//System.out.println(b+" paddle: "+pad);
 		return b.intersects(pad);
 		
 	}

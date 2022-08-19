@@ -14,6 +14,7 @@ public class movingBlocks extends Blocks{
 		vx = newVX;
 	}
 	
+	//create a warping effect for the moving blocks 
 	public void moveBlock() {
 		x+=vx;
 		if(x == 600) {

@@ -1,4 +1,4 @@
-import java.applet.Applet;
+//import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Driver extends JPanel implements ActionListener, KeyListener {
 	
 	int table_width = 600; //width of the screen 
-	int table_height = 700;//height of the screen 
+	int table_height = 700; //height of the screen 
 	
 
 	Ball ball2 = new Ball();
@@ -28,12 +28,11 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 	int score = 0;
 	boolean redraw = true;
 	
-	
 	//A Font object to represent a bigger text in paint 
 	Font biggerFont = new Font ("Courier New", 1, 50);
 	
 	/*
-	 * Paint all the graphics here.
+	 * All graphics are painted here.
 	 */
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -53,14 +52,13 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 						
 			}
 		}		
-		g.setFont(biggerFont); //set it to bigger Font object
+		g.setFont(biggerFont); 
 		
-	}//end of paint method - put code above for anything dealing with drawing -
+	}
 	
-	
+	/* Updates the variables in the game. */
 	public void update() {
-		//update variables for game here
-		//Assume this is run 60times per second 
+		//assume this is run 60 times per second 
 		ball2.move();
 		if(p1.getX()<=0) {
 			//restricts paddle on left side
@@ -74,7 +72,6 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 		
 		if(ball2.collided(p1)){
 			//set velocity (x) to its opposite
-			//use setter and getter of the ball
 			ball2.setVy(-ball2.getVy());
 			
 		}
@@ -82,10 +79,8 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 		//fill 2d array of blocks
 		int x = 7;
 		int y = 115;
-		
 	
 		//draw only when ball hasnt collided
-		
 		for(int r = 0; r < blockArr.length; r++) {
 			for(int c =0; c < blockArr[0].length; c++) {
 				if(redraw) {
@@ -97,7 +92,6 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 			y = 115;
 			x+=117;
 		}
-		
 			
 		//moving blocks
 		firstBlock.moveBlock();
@@ -117,11 +111,6 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		
-		/*
-		 * ball to block collision works, but the 2D array only shows up after
-		 * one block is hit by the ball 
-		 */
-		
 		//check collision for moving blocks
 		if(firstBlock.collided(ball2)) {
 			firstBlock.setX(700);
@@ -138,10 +127,8 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 			thirdBlock.setVx(0);
 			ball2.setVy(-ball2.getVy());
 		}		
-		
-		
-		
-	}//end of update method - put code above for any updates on variable
+			
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -152,6 +139,7 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 	public static void main(String[] arg) {
 		Driver d = new Driver();
 	}
+	
 	public Driver(){
 		
 		//SETUP the JFRAME
@@ -178,33 +166,28 @@ public class Driver extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		//System.out.println(e.getKeyCode());
 		
+		//TODO: speed of the keys
+		
 		int xPos = p1.getX();
 		if(e.getKeyCode()==37){ //left arrow key was pressed
-			p1.setX(xPos-=10);
-			//p1.moveLeft();
-			
+			p1.setX(xPos-=20);	
 		}
 	
 		//detect arrow down key pressed
 		if(e.getKeyCode()==39){
-			p1.setX(xPos+=10);
-			//p1.moveRight();
-			
+			p1.setX(xPos+=20);
 		}		
 		
 	}
 
-	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
